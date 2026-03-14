@@ -24,6 +24,10 @@ Boiler model:
     LowLevel         – fill < 10 %
     HighPressure     – pressure > 3.5 bar
 
+  SimControl (writable – can be adjusted live):
+    SimIntervalS     – wall-clock seconds between ticks (default 1.0, min 0.1)
+    SimSpeed         – physics seconds simulated per tick (default 1.0, e.g. 10 = 10× faster)
+
 Run:
     python boiler_opcua_server.py
 
@@ -48,7 +52,8 @@ HEAT_LOSS_KW = 0.3  # passive heat loss to environment
 AMBIENT_TEMP_C = 20.0  # room temperature
 MAX_FLOW_IN_LPM = 20.0  # max inlet flow at 100 % valve
 MAX_FLOW_OUT_LPM = 15.0  # max outlet flow at 100 % valve
-SIM_INTERVAL_S = 1.0  # simulation tick (seconds)
+SIM_INTERVAL_S = 1.0  # wall-clock seconds between ticks
+SIM_SPEED = 1.0  # physics seconds simulated per tick (>1 = faster)
 
 # Pressure model: P_bar = BASE + fill_factor * FILL_COEFF + temp_factor * TEMP_COEFF
 PRESSURE_BASE = 1.013  # atmospheric pressure (bar)
@@ -83,10 +88,9 @@ class BoilerModel:
     def flow_in_lpm(self):
         return self.inlet_valve / 100.0 * MAX_FLOW_IN_LPM
 
-    @property
-    def flow_out_lpm(self):
-        # Can't draw more than what's there
-        available_lpm = self.water_liters / (SIM_INTERVAL_S / 60.0)
+    def flow_out_lpm(self, dt_s: float):
+        # Can't draw more water than physically present in this tick
+        available_lpm = self.water_liters / (dt_s / 60.0) if dt_s > 0 else 0.0
         return min(self.outlet_valve / 100.0 * MAX_FLOW_OUT_LPM, available_lpm)
 
     @property
@@ -129,7 +133,7 @@ class BoilerModel:
 
         # --- water volume ---------------------------------------------------
         vol_in = self.flow_in_lpm * dt_min  # litres added
-        vol_out = self.flow_out_lpm * dt_min  # litres removed
+        vol_out = self.flow_out_lpm(dt_s) * dt_min  # litres removed
 
         # Mixing: incoming cold water (ambient) cools the boiler proportionally
         current_water = self.water_liters
@@ -241,11 +245,36 @@ async def main():
         alarms, "HighPressure", False, description="Pressure > 3.5 bar"
     )
 
+    # --- SimControl folder --------------------------------------------------
+    simctrl = await boiler_node.add_object(nsidx, "SimControl")
+    n_interval = await add_var(
+        simctrl,
+        "SimIntervalS",
+        SIM_INTERVAL_S,
+        writable=True,
+        description="Wall-clock seconds between ticks (min 0.1)",
+    )
+    n_simspeed = await add_var(
+        simctrl,
+        "SimSpeed",
+        SIM_SPEED,
+        writable=True,
+        description="Physics seconds per tick — e.g. 10 = 10× faster",
+    )
+
     # --- Simulation loop ----------------------------------------------------
     model = BoilerModel()
 
     async def simulation_loop():
         while True:
+            # Read simulation control parameters
+            interval_s = await n_interval.get_value()
+            sim_speed = await n_simspeed.get_value()
+
+            # Clamp to safe ranges
+            interval_s = max(0.1, float(interval_s))
+            sim_speed = max(0.1, float(sim_speed))
+
             # Read actuator setpoints from OPC UA nodes
             model.inlet_valve = await n_inlet.get_value()
             model.outlet_valve = await n_outlet.get_value()
@@ -255,15 +284,17 @@ async def main():
             model.inlet_valve = max(0.0, min(100.0, model.inlet_valve))
             model.outlet_valve = max(0.0, min(100.0, model.outlet_valve))
 
-            # Advance physics
-            model.step(SIM_INTERVAL_S)
+            # Advance physics: interval_s of wall time, sim_speed × physics time
+            model.step(interval_s * sim_speed)
 
             # Write sensor outputs back to OPC UA
             await n_fill.set_value(round(model.fill_level, 2))
             await n_temp.set_value(round(model.temperature, 2))
             await n_press.set_value(round(model.pressure_bar, 3))
             await n_flow_in.set_value(round(model.flow_in_lpm, 2))
-            await n_flow_out.set_value(round(model.flow_out_lpm, 2))
+            await n_flow_out.set_value(
+                round(model.flow_out_lpm(interval_s * sim_speed), 2)
+            )
             await n_hpow.set_value(round(model.heater_power_kw, 2))
 
             # Write alarm flags
@@ -274,19 +305,22 @@ async def main():
             log.info(
                 "Fill=%.1f%%  Temp=%.1f°C  Press=%.3fbar  "
                 "FlowIn=%.1f  FlowOut=%.1f  HeaterPow=%.2fkW  "
+                "Speed=%.1fx  Interval=%.2fs  "
                 "Alarms[OT=%s LL=%s HP=%s]",
                 model.fill_level,
                 model.temperature,
                 model.pressure_bar,
                 model.flow_in_lpm,
-                model.flow_out_lpm,
+                model.flow_out_lpm(interval_s * sim_speed),
                 model.heater_power_kw,
+                sim_speed,
+                interval_s,
                 model.alarm_over_temp,
                 model.alarm_low_level,
                 model.alarm_high_pressure,
             )
 
-            await asyncio.sleep(SIM_INTERVAL_S)
+            await asyncio.sleep(interval_s)
 
     log.info("Starting OPC UA Boiler Simulator on opc.tcp://0.0.0.0:4840/boiler/")
     log.info("Security: None  |  Authentication: Anonymous")

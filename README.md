@@ -75,6 +75,10 @@ Objects/
         ├── OverTemperature     Boolean             Temperature exceeds 95 °C
         ├── LowLevel            Boolean             Fill level below 10 %
         └── HighPressure        Boolean             Pressure exceeds 3.5 bar
+
+    └── SimControl/             ← Writable, adjust live via HMI sliders
+        ├── SimIntervalS        Float   seconds     Wall-clock delay between ticks (min 0.1)
+        └── SimSpeed            Float   ×           Physics seconds per tick (1.0 = real time)
 ```
 
 ---
@@ -121,6 +125,39 @@ ALARM_OVER_TEMP_C     = 95.0
 ALARM_LOW_LEVEL_PCT   = 10.0
 ALARM_HIGH_PRESSURE   = 3.5
 ```
+
+---
+
+## Speeding Up the Simulation
+
+The simulation speed can be adjusted **live at runtime** by writing to the two `SimControl` nodes over OPC UA — no restart needed. Your HMI can expose these as sliders.
+
+| Node | Type | Default | Effect |
+|---|---|---|---|
+| `SimControl/SimIntervalS` | Float | `1.0` | Wall-clock seconds between ticks. Lower = faster sensor refresh. Min `0.1`. |
+| `SimControl/SimSpeed` | Float | `1.0` | Physics seconds simulated per tick. Higher = faster boiler dynamics. |
+
+**Examples:**
+
+- `SimSpeed = 10.0` → temperature, fill level, and pressure all change 10× faster than real time
+- `SimIntervalS = 0.2` → OPC UA values update 5 times per second
+- `SimSpeed = 0.1` → slow-motion mode for step-by-step testing
+
+Both parameters are also configurable as startup defaults at the top of `boiler_opcua_server.py`:
+
+```python
+SIM_INTERVAL_S = 1.0   # default wall-clock tick (seconds)
+SIM_SPEED      = 1.0   # default physics multiplier
+```
+
+### Quick reference
+
+| Goal | What to change |
+|---|---|
+| Faster temperature rise / fill | Increase `SimSpeed` |
+| Faster sensor refresh rate | Decrease `SimIntervalS` |
+| Both | Increase `SimSpeed` **and** decrease `SimIntervalS` |
+| Slow motion for debugging | Set `SimSpeed` to e.g. `0.1` |
 
 ---
 
