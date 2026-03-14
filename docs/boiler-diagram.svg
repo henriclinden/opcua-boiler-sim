@@ -49,10 +49,12 @@
     </marker>
     <linearGradient
        id="water-grad"
-       x1="0"
-       y1="0"
-       x2="0"
-       y2="1">
+       x1="266.28761"
+       y1="45.064057"
+       x2="266.28761"
+       y2="337.98043"
+       gradientTransform="scale(0.75106762,1.331438)"
+       gradientUnits="userSpaceOnUse">
       <stop
          offset="0%"
          stop-color="#E8593C"
@@ -134,18 +136,20 @@
   <!-- ── TANK ── -->
   <g
      clip-path="url(#tank-clip)"
-     id="g8">
+     id="g8"
+     transform="translate(0,46)">
     <rect
        x="200"
        y="60"
        width="220"
        height="390"
        fill="url(#water-grad)"
-       id="rect8" />
+       id="rect8"
+       style="fill:url(#water-grad)" />
   </g>
   <rect
      x="200"
-     y="60"
+     y="106"
      width="220"
      height="390"
      rx="18"
@@ -156,7 +160,7 @@
      id="rect9" />
   <rect
      x="200"
-     y="60"
+     y="106"
      width="220"
      height="390"
      rx="18"
@@ -168,56 +172,56 @@
   <!-- Cold inlet pipe + dip tube -->
   <rect
      x="232"
-     y="18"
+     y="64"
      width="14"
      height="52"
      rx="3"
-     fill="#3B8BD4"
+     fill="#3b8bd4"
      opacity="0.25"
      id="rect11" />
   <line
      x1="239"
-     y1="18"
+     y1="64"
      x2="239"
-     y2="60"
-     stroke="#3B8BD4"
+     y2="106"
+     stroke="#3b8bd4"
      stroke-width="2.5"
      stroke-linecap="round"
      id="line11" />
   <line
      x1="239"
-     y1="60"
+     y1="106"
      x2="239"
-     y2="410"
+     y2="456"
      stroke="#73726c"
      stroke-width="2"
      stroke-linecap="round"
      opacity="0.4"
-     stroke-dasharray="6 3"
+     stroke-dasharray="6, 3"
      id="line12" />
   <!-- Hot outlet pipe -->
   <rect
      x="368"
-     y="18"
+     y="64"
      width="14"
      height="52"
      rx="3"
-     fill="#E8593C"
+     fill="#e8593c"
      opacity="0.25"
      id="rect12" />
   <line
      x1="375"
-     y1="18"
+     y1="64"
      x2="375"
-     y2="60"
-     stroke="#E8593C"
+     y2="106"
+     stroke="#e8593c"
      stroke-width="2.5"
      stroke-linecap="round"
      id="line13" />
   <!-- ── HEATER ELEMENT + FLAMES ── -->
   <rect
      x="208"
-     y="456"
+     y="502"
      width="204"
      height="6"
      rx="3"
@@ -521,80 +525,80 @@
   <text
      class="ts"
      x="147.47862"
-     y="30.493151"
+     y="76.493149"
      text-anchor="middle"
      fill="#3B8BD4"
      id="text38">Cold water in</text>
   <line
      x1="192"
-     y1="28"
+     y1="74"
      x2="232"
-     y2="28"
-     stroke="#3B8BD4"
+     y2="74"
+     stroke="#3b8bd4"
      stroke-width="1"
      marker-end="url(#arrow)"
      id="line38" />
   <text
      class="ts"
      x="145.19054"
-     y="48.455791"
+     y="94.455795"
      text-anchor="middle"
      fill="#E8593C"
      id="text39">Hot water out</text>
   <line
      x1="192"
-     y1="44"
+     y1="90"
      x2="368"
-     y2="44"
-     stroke="#E8593C"
+     y2="90"
+     stroke="#e8593c"
      stroke-width="1"
      marker-end="url(#arrow)"
      id="line39" />
   <!-- Fill level bar -->
   <rect
      x="184"
-     y="60"
+     y="106"
      width="8"
      height="195"
      rx="2"
-     fill="#E8593C"
+     fill="#e8593c"
      opacity="0.5"
      id="rect39" />
   <rect
      x="184"
-     y="255"
+     y="301"
      width="8"
      height="195"
      rx="2"
-     fill="#3B8BD4"
+     fill="#3b8bd4"
      opacity="0.35"
      id="rect40" />
   <text
      class="ts"
      x="178"
-     y="120"
+     y="166"
      text-anchor="end"
      fill="#E8593C"
      id="text40">Hot</text>
   <text
      class="ts"
      x="178"
-     y="380"
+     y="426"
      text-anchor="end"
      fill="#3B8BD4"
      id="text41">Cold</text>
   <text
      class="ts"
      x="178"
-     y="256"
+     y="302"
      text-anchor="end"
      opacity="0.6"
      id="text42">80%</text>
   <line
      x1="181.85522"
-     y1="251.35928"
+     y1="297.35928"
      x2="199.85522"
-     y2="251.35928"
+     y2="297.35928"
      stroke="#73726c"
      stroke-width="0.5"
      opacity="0.5"
@@ -603,37 +607,37 @@
   <text
      class="ts"
      x="310"
-     y="490"
+     y="536"
      text-anchor="middle"
      opacity="0.65"
      id="text43">Heating element</text>
   <text
      class="ts"
      x="114.38672"
-     y="297.08841"
+     y="343.08841"
      text-anchor="middle"
      opacity="0.6"
      id="text44">Dip tube</text>
   <line
      class="leader"
      x1="142"
-     y1="294"
+     y1="340"
      x2="237"
-     y2="294"
+     y2="340"
      id="line44" />
   <text
      class="ts"
      x="93.729492"
-     y="202.86227"
+     y="248.86227"
      text-anchor="middle"
      opacity="0.6"
      id="text45">Pressure gauge</text>
   <line
      class="leader"
      x1="145"
-     y1="200"
+     y1="246"
      x2="199.79366"
-     y2="200"
+     y2="246"
      id="line45" />
   <!-- ── TITLE ── -->
   <text
