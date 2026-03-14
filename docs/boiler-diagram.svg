@@ -1,23 +1,110 @@
-<svg width="100%" viewBox="0 0 680 620" xmlns="http://www.w3.org/2000/svg">
-<defs>
-  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-  <linearGradient id="water-grad" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#E8593C" stop-opacity="0.55"/>
-    <stop offset="55%" stop-color="#E8593C" stop-opacity="0.30"/>
-    <stop offset="55%" stop-color="#3B8BD4" stop-opacity="0.30"/>
-    <stop offset="100%" stop-color="#3B8BD4" stop-opacity="0.18"/>
-  </linearGradient>
-  <linearGradient id="flame-g" x1="0" y1="1" x2="0" y2="0">
-    <stop offset="0%" stop-color="#D14520"/>
-    <stop offset="60%" stop-color="#EF9F27"/>
-    <stop offset="100%" stop-color="#FCDE5A"/>
-  </linearGradient>
-  <clipPath id="tank-clip">
-    <rect x="200" y="60" width="220" height="390" rx="18"/>
-  </clipPath>
-  <style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="100%"
+   viewBox="0 0 680 620"
+   version="1.1"
+   id="svg46"
+   sodipodi:docname="boiler-diagram.svg"
+   inkscape:version="1.4.3 (fcd0343856, 2026-01-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview46"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.91581733"
+     inkscape:cx="101.54864"
+     inkscape:cy="264.7908"
+     inkscape:window-width="1870"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg46" />
+  <defs
+     id="defs7">
+    <marker
+       id="arrow"
+       viewBox="0 0 10 10"
+       refX="8"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M2 1L8 5L2 9"
+         fill="none"
+         stroke="context-stroke"
+         stroke-width="1.5"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path1" />
+    </marker>
+    <linearGradient
+       id="water-grad"
+       x1="0"
+       y1="0"
+       x2="0"
+       y2="1">
+      <stop
+         offset="0%"
+         stop-color="#E8593C"
+         stop-opacity="0.55"
+         id="stop1" />
+      <stop
+         offset="55%"
+         stop-color="#E8593C"
+         stop-opacity="0.30"
+         id="stop2" />
+      <stop
+         offset="55%"
+         stop-color="#3B8BD4"
+         stop-opacity="0.30"
+         id="stop3" />
+      <stop
+         offset="100%"
+         stop-color="#3B8BD4"
+         stop-opacity="0.18"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       id="flame-g"
+       x1="0"
+       y1="1"
+       x2="0"
+       y2="0">
+      <stop
+         offset="0%"
+         stop-color="#D14520"
+         id="stop5" />
+      <stop
+         offset="60%"
+         stop-color="#EF9F27"
+         id="stop6" />
+      <stop
+         offset="100%"
+         stop-color="#FCDE5A"
+         id="stop7" />
+    </linearGradient>
+    <clipPath
+       id="tank-clip">
+      <rect
+         x="200"
+         y="60"
+         width="220"
+         height="390"
+         rx="18"
+         id="rect7" />
+    </clipPath>
+    <style
+       id="style7">
     text { font-family: ui-sans-serif, system-ui, sans-serif; fill: #3d3d3a; }
     .th  { font-size: 14px; font-weight: 500; }
     .ts  { font-size: 12px; font-weight: 400; }
@@ -43,101 +130,516 @@
       .leader      { stroke: #5f5e5a; }
     }
   </style>
-</defs>
-
-<!-- ── TANK ── -->
-<g clip-path="url(#tank-clip)">
-  <rect x="200" y="60" width="220" height="390" fill="url(#water-grad)"/>
-</g>
-<rect x="200" y="60" width="220" height="390" rx="18" fill="none" stroke="#73726c" stroke-width="2" opacity="0.35"/>
-<rect x="200" y="60" width="220" height="390" rx="18" fill="none" stroke="#73726c" stroke-width="0.5"/>
-
-<!-- Convection arrows -->
-<path d="M340 420 C348 360,355 260,345 160 Q340 120,328 108" fill="none" stroke="#D05538" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
-<path d="M280 430 C275 370,270 270,278 170 Q282 130,295 115" fill="none" stroke="#3B8BD4" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
-
-<!-- Cold inlet pipe + dip tube -->
-<rect x="232" y="18" width="14" height="52" rx="3" fill="#3B8BD4" opacity="0.25"/>
-<line x1="239" y1="18" x2="239" y2="60" stroke="#3B8BD4" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="239" y1="60" x2="239" y2="410" stroke="#73726c" stroke-width="2" stroke-linecap="round" opacity="0.4" stroke-dasharray="6 3"/>
-
-<!-- Hot outlet pipe -->
-<rect x="368" y="18" width="14" height="52" rx="3" fill="#E8593C" opacity="0.25"/>
-<line x1="375" y1="18" x2="375" y2="60" stroke="#E8593C" stroke-width="2.5" stroke-linecap="round"/>
-
-<!-- ── HEATER ELEMENT + FLAMES ── -->
-<rect x="208" y="456" width="204" height="6" rx="3" fill="#73726c" opacity="0.5"/>
-<path d="M230,456 Q237,432 241,440 Q245,424 249,456Z" fill="url(#flame-g)" opacity="0.9"/>
-<path d="M265,456 Q272,428 277,436 Q282,418 287,456Z" fill="url(#flame-g)" opacity="0.9"/>
-<path d="M303,456 Q310,430 315,438 Q320,422 324,456Z" fill="url(#flame-g)" opacity="0.9"/>
-<path d="M342,456 Q348,432 352,440 Q356,424 360,456Z" fill="url(#flame-g)" opacity="0.9"/>
-<path d="M378,456 Q384,434 388,441 Q392,428 396,456Z" fill="url(#flame-g)" opacity="0.9"/>
-
-<!-- Pressure gauge -->
-<circle cx="200" cy="200" r="8" fill="none" stroke="#73726c" stroke-width="1.2" opacity="0.7"/>
-<line x1="200" y1="200" x2="196" y2="196" stroke="#73726c" stroke-width="1" opacity="0.7"/>
-
-<!-- ── OPC UA NODES PANEL ── -->
-<rect class="panel-bg" x="462" y="42" width="192" height="524" rx="10"/>
-<text class="th" x="558" y="66" text-anchor="middle">OPC UA nodes</text>
-
-<!-- Actuators -->
-<rect class="section-bg" x="472" y="76" width="172" height="14" rx="4" opacity="0.5"/>
-<text class="ts" x="480" y="87">Actuators  (writable)</text>
-<g class="node-teal"><rect x="472" y="96"  width="172" height="32" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="116" text-anchor="middle">InletValve  0–100 %</text></g>
-<g class="node-teal"><rect x="472" y="133" width="172" height="32" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="153" text-anchor="middle">OutletValve  0–100 %</text></g>
-<g class="node-teal"><rect x="472" y="170" width="172" height="32" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="190" text-anchor="middle">HeaterEnable  bool</text></g>
-
-<!-- Sensors -->
-<rect class="section-bg" x="472" y="212" width="172" height="14" rx="4" opacity="0.5"/>
-<text class="ts" x="480" y="223">Sensors  (read-only)</text>
-<g class="node-blue"><rect x="472" y="232" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="250" text-anchor="middle">FillLevel  %</text></g>
-<g class="node-blue"><rect x="472" y="265" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="283" text-anchor="middle">Temperature  °C</text></g>
-<g class="node-blue"><rect x="472" y="298" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="316" text-anchor="middle">Pressure  bar</text></g>
-<g class="node-blue"><rect x="472" y="331" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="349" text-anchor="middle">FlowRateIn / Out</text></g>
-<g class="node-blue"><rect x="472" y="364" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="382" text-anchor="middle">HeaterPower  kW</text></g>
-
-<!-- Alarms -->
-<rect class="section-bg" x="472" y="402" width="172" height="14" rx="4" opacity="0.5"/>
-<text class="ts" x="480" y="413">Alarms  (read-only)</text>
-<g class="node-coral"><rect x="472" y="422" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="440" text-anchor="middle">OverTemperature</text></g>
-<g class="node-coral"><rect x="472" y="455" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="473" text-anchor="middle">LowLevel</text></g>
-<g class="node-coral"><rect x="472" y="488" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="506" text-anchor="middle">HighPressure</text></g>
-
-<!-- SimControl -->
-<rect class="section-bg" x="472" y="524" width="172" height="14" rx="4" opacity="0.5"/>
-<text class="ts" x="480" y="535">SimControl  (writable)</text>
-<g class="node-teal"><rect x="472" y="543" width="172" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="558" y="561" text-anchor="middle">SimIntervalS  · SimSpeed</text></g>
-
-<!-- ── CONNECTOR LINES tank → panel ── -->
-<path d="M472 112 L430 112 L430 34 L246 34" fill="none" stroke="#73726c" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.45" marker-end="url(#arrow)"/>
-<path d="M472 149 L440 149 L440 34 L382 34" fill="none" stroke="#73726c" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.45" marker-end="url(#arrow)"/>
-<path d="M472 186 L450 186 L450 459" fill="none" stroke="#73726c" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.45" marker-end="url(#arrow)"/>
-<path d="M420 246 L462 246" fill="none" stroke="#3B8BD4" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.5" marker-end="url(#arrow)"/>
-<path d="M420 161 L456 161 L456 279" fill="none" stroke="#E8593C" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.4" marker-end="url(#arrow)"/>
-<path d="M208 200 L192 200 L192 312 L462 312" fill="none" stroke="#73726c" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.4" marker-end="url(#arrow)"/>
-
-<!-- ── LEFT LABELS ── -->
-<text class="ts" x="156" y="22" text-anchor="middle" fill="#3B8BD4">Cold water in</text>
-<line x1="192" y1="28" x2="232" y2="28" stroke="#3B8BD4" stroke-width="1" marker-end="url(#arrow)"/>
-<text class="ts" x="156" y="50" text-anchor="middle" fill="#E8593C">Hot water out</text>
-<line x1="192" y1="44" x2="368" y2="44" stroke="#E8593C" stroke-width="1" marker-end="url(#arrow)"/>
-
-<!-- Fill level bar -->
-<rect x="184" y="60"  width="8" height="195" rx="2" fill="#E8593C" opacity="0.5"/>
-<rect x="184" y="255" width="8" height="195" rx="2" fill="#3B8BD4" opacity="0.35"/>
-<text class="ts" x="178" y="120" text-anchor="end" fill="#E8593C">Hot</text>
-<text class="ts" x="178" y="380" text-anchor="end" fill="#3B8BD4">Cold</text>
-<text class="ts" x="178" y="256" text-anchor="end" opacity="0.6">80%</text>
-<line x1="182" y1="253" x2="200" y2="253" stroke="#73726c" stroke-width="0.5" opacity="0.5"/>
-
-<!-- Callout labels -->
-<text class="ts" x="310" y="490" text-anchor="middle" opacity="0.65">Heating element</text>
-<text class="ts" x="100" y="310" text-anchor="middle" opacity="0.6">Dip tube</text>
-<line class="leader" x1="142" y1="310" x2="237" y2="310"/>
-<text class="ts" x="100" y="200" text-anchor="middle" opacity="0.6">Pressure gauge</text>
-<line class="leader" x1="145" y1="200" x2="192" y2="200"/>
-
-<!-- ── TITLE ── -->
-<text class="th" x="310" y="596" text-anchor="middle">Boiler simulator — physical model &amp; OPC UA address space</text>
+  </defs>
+  <!-- ── TANK ── -->
+  <g
+     clip-path="url(#tank-clip)"
+     id="g8">
+    <rect
+       x="200"
+       y="60"
+       width="220"
+       height="390"
+       fill="url(#water-grad)"
+       id="rect8" />
+  </g>
+  <rect
+     x="200"
+     y="60"
+     width="220"
+     height="390"
+     rx="18"
+     fill="none"
+     stroke="#73726c"
+     stroke-width="2"
+     opacity="0.35"
+     id="rect9" />
+  <rect
+     x="200"
+     y="60"
+     width="220"
+     height="390"
+     rx="18"
+     fill="none"
+     stroke="#73726c"
+     stroke-width="0.5"
+     id="rect10" />
+  <!-- Convection arrows -->
+  <!-- Cold inlet pipe + dip tube -->
+  <rect
+     x="232"
+     y="18"
+     width="14"
+     height="52"
+     rx="3"
+     fill="#3B8BD4"
+     opacity="0.25"
+     id="rect11" />
+  <line
+     x1="239"
+     y1="18"
+     x2="239"
+     y2="60"
+     stroke="#3B8BD4"
+     stroke-width="2.5"
+     stroke-linecap="round"
+     id="line11" />
+  <line
+     x1="239"
+     y1="60"
+     x2="239"
+     y2="410"
+     stroke="#73726c"
+     stroke-width="2"
+     stroke-linecap="round"
+     opacity="0.4"
+     stroke-dasharray="6 3"
+     id="line12" />
+  <!-- Hot outlet pipe -->
+  <rect
+     x="368"
+     y="18"
+     width="14"
+     height="52"
+     rx="3"
+     fill="#E8593C"
+     opacity="0.25"
+     id="rect12" />
+  <line
+     x1="375"
+     y1="18"
+     x2="375"
+     y2="60"
+     stroke="#E8593C"
+     stroke-width="2.5"
+     stroke-linecap="round"
+     id="line13" />
+  <!-- ── HEATER ELEMENT + FLAMES ── -->
+  <rect
+     x="208"
+     y="456"
+     width="204"
+     height="6"
+     rx="3"
+     fill="#73726c"
+     opacity="0.5"
+     id="rect13" />
+  <!-- Pressure gauge -->
+  <!-- ── OPC UA NODES PANEL ── -->
+  <rect
+     class="panel-bg"
+     x="462.00293"
+     y="42.002926"
+     width="191.99416"
+     height="536.34784"
+     rx="9.9996958"
+     id="rect17" />
+  <text
+     class="th"
+     x="558"
+     y="66"
+     text-anchor="middle"
+     id="text17">OPC UA nodes</text>
+  <!-- Actuators -->
+  <rect
+     class="section-bg"
+     x="472"
+     y="76"
+     width="172"
+     height="14"
+     rx="4"
+     opacity="0.5"
+     id="rect18" />
+  <text
+     class="ts"
+     x="480"
+     y="87"
+     id="text18">Actuators  (writable)</text>
+  <g
+     class="node-teal"
+     id="g19">
+    <rect
+       x="472"
+       y="96"
+       width="172"
+       height="32"
+       rx="6"
+       stroke-width="0.5"
+       id="rect19" />
+    <text
+       class="ts"
+       x="558"
+       y="116"
+       text-anchor="middle"
+       id="text19">InletValve  0–100 %</text>
+  </g>
+  <g
+     class="node-teal"
+     id="g20">
+    <rect
+       x="472"
+       y="133"
+       width="172"
+       height="32"
+       rx="6"
+       stroke-width="0.5"
+       id="rect20" />
+    <text
+       class="ts"
+       x="558"
+       y="153"
+       text-anchor="middle"
+       id="text20">OutletValve  0–100 %</text>
+  </g>
+  <g
+     class="node-teal"
+     id="g21">
+    <rect
+       x="472"
+       y="170"
+       width="172"
+       height="32"
+       rx="6"
+       stroke-width="0.5"
+       id="rect21" />
+    <text
+       class="ts"
+       x="558"
+       y="190"
+       text-anchor="middle"
+       id="text21">HeaterEnable  bool</text>
+  </g>
+  <!-- Sensors -->
+  <rect
+     class="section-bg"
+     x="472"
+     y="212"
+     width="172"
+     height="14"
+     rx="4"
+     opacity="0.5"
+     id="rect22" />
+  <text
+     class="ts"
+     x="480"
+     y="223"
+     id="text22">Sensors  (read-only)</text>
+  <g
+     class="node-blue"
+     id="g23">
+    <rect
+       x="472"
+       y="232"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect23" />
+    <text
+       class="ts"
+       x="558"
+       y="250"
+       text-anchor="middle"
+       id="text23">FillLevel  %</text>
+  </g>
+  <g
+     class="node-blue"
+     id="g24">
+    <rect
+       x="472"
+       y="265"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect24" />
+    <text
+       class="ts"
+       x="558"
+       y="283"
+       text-anchor="middle"
+       id="text24">Temperature  °C</text>
+  </g>
+  <g
+     class="node-blue"
+     id="g25">
+    <rect
+       x="472"
+       y="298"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect25" />
+    <text
+       class="ts"
+       x="558"
+       y="316"
+       text-anchor="middle"
+       id="text25">Pressure  bar</text>
+  </g>
+  <g
+     class="node-blue"
+     id="g26">
+    <rect
+       x="472"
+       y="331"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect26" />
+    <text
+       class="ts"
+       x="558"
+       y="349"
+       text-anchor="middle"
+       id="text26">FlowRateIn / Out</text>
+  </g>
+  <g
+     class="node-blue"
+     id="g27">
+    <rect
+       x="472"
+       y="364"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect27" />
+    <text
+       class="ts"
+       x="558"
+       y="382"
+       text-anchor="middle"
+       id="text27">HeaterPower  kW</text>
+  </g>
+  <!-- Alarms -->
+  <rect
+     class="section-bg"
+     x="472"
+     y="402"
+     width="172"
+     height="14"
+     rx="4"
+     opacity="0.5"
+     id="rect28" />
+  <text
+     class="ts"
+     x="480"
+     y="413"
+     id="text28">Alarms  (read-only)</text>
+  <g
+     class="node-coral"
+     id="g29">
+    <rect
+       x="472"
+       y="422"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect29" />
+    <text
+       class="ts"
+       x="558"
+       y="440"
+       text-anchor="middle"
+       id="text29">OverTemperature</text>
+  </g>
+  <g
+     class="node-coral"
+     id="g30">
+    <rect
+       x="472"
+       y="455"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect30" />
+    <text
+       class="ts"
+       x="558"
+       y="473"
+       text-anchor="middle"
+       id="text30">LowLevel</text>
+  </g>
+  <g
+     class="node-coral"
+     id="g31">
+    <rect
+       x="472"
+       y="488"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect31" />
+    <text
+       class="ts"
+       x="558"
+       y="506"
+       text-anchor="middle"
+       id="text31">HighPressure</text>
+  </g>
+  <!-- SimControl -->
+  <rect
+     class="section-bg"
+     x="472"
+     y="524"
+     width="172"
+     height="14"
+     rx="4"
+     opacity="0.5"
+     id="rect32" />
+  <text
+     class="ts"
+     x="480"
+     y="535"
+     id="text32">SimControl  (writable)</text>
+  <g
+     class="node-teal"
+     id="g33">
+    <rect
+       x="472"
+       y="543"
+       width="172"
+       height="28"
+       rx="6"
+       stroke-width="0.5"
+       id="rect33" />
+    <text
+       class="ts"
+       x="558"
+       y="561"
+       text-anchor="middle"
+       id="text33">SimIntervalS  · SimSpeed</text>
+  </g>
+  <!-- ── CONNECTOR LINES tank → panel ── -->
+  <!-- ── LEFT LABELS ── -->
+  <text
+     class="ts"
+     x="147.47862"
+     y="30.493151"
+     text-anchor="middle"
+     fill="#3B8BD4"
+     id="text38">Cold water in</text>
+  <line
+     x1="192"
+     y1="28"
+     x2="232"
+     y2="28"
+     stroke="#3B8BD4"
+     stroke-width="1"
+     marker-end="url(#arrow)"
+     id="line38" />
+  <text
+     class="ts"
+     x="145.19054"
+     y="48.455791"
+     text-anchor="middle"
+     fill="#E8593C"
+     id="text39">Hot water out</text>
+  <line
+     x1="192"
+     y1="44"
+     x2="368"
+     y2="44"
+     stroke="#E8593C"
+     stroke-width="1"
+     marker-end="url(#arrow)"
+     id="line39" />
+  <!-- Fill level bar -->
+  <rect
+     x="184"
+     y="60"
+     width="8"
+     height="195"
+     rx="2"
+     fill="#E8593C"
+     opacity="0.5"
+     id="rect39" />
+  <rect
+     x="184"
+     y="255"
+     width="8"
+     height="195"
+     rx="2"
+     fill="#3B8BD4"
+     opacity="0.35"
+     id="rect40" />
+  <text
+     class="ts"
+     x="178"
+     y="120"
+     text-anchor="end"
+     fill="#E8593C"
+     id="text40">Hot</text>
+  <text
+     class="ts"
+     x="178"
+     y="380"
+     text-anchor="end"
+     fill="#3B8BD4"
+     id="text41">Cold</text>
+  <text
+     class="ts"
+     x="178"
+     y="256"
+     text-anchor="end"
+     opacity="0.6"
+     id="text42">80%</text>
+  <line
+     x1="181.85522"
+     y1="251.35928"
+     x2="199.85522"
+     y2="251.35928"
+     stroke="#73726c"
+     stroke-width="0.5"
+     opacity="0.5"
+     id="line42" />
+  <!-- Callout labels -->
+  <text
+     class="ts"
+     x="310"
+     y="490"
+     text-anchor="middle"
+     opacity="0.65"
+     id="text43">Heating element</text>
+  <text
+     class="ts"
+     x="114.38672"
+     y="297.08841"
+     text-anchor="middle"
+     opacity="0.6"
+     id="text44">Dip tube</text>
+  <line
+     class="leader"
+     x1="142"
+     y1="294"
+     x2="237"
+     y2="294"
+     id="line44" />
+  <text
+     class="ts"
+     x="93.729492"
+     y="202.86227"
+     text-anchor="middle"
+     opacity="0.6"
+     id="text45">Pressure gauge</text>
+  <line
+     class="leader"
+     x1="145"
+     y1="200"
+     x2="199.79366"
+     y2="200"
+     id="line45" />
+  <!-- ── TITLE ── -->
+  <text
+     class="th"
+     x="309.22791"
+     y="598.31628"
+     text-anchor="middle"
+     id="text46">Boiler simulator — physical model &amp; OPC UA address space</text>
 </svg>

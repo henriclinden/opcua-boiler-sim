@@ -1,7 +1,4 @@
-name: boilersim
-
 services:
-
   boiler-simulator:
     build:
       context: .
@@ -11,19 +8,16 @@ services:
     restart: unless-stopped
     ports:
       - "4840:4840"
-
     environment:
       # Python log level: DEBUG | INFO | WARNING | ERROR
       - PYTHONUNBUFFERED=1
       - LOG_LEVEL=INFO
-
     healthcheck:
       test: ["CMD-SHELL", "python -c \"import socket; s=socket.create_connection(('localhost', 4840), timeout=5); s.close()\""]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 15s
-
     logging:
       driver: "json-file"
       options:
