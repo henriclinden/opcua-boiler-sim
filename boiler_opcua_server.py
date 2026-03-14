@@ -326,8 +326,14 @@ async def main():
     log.info("Security: None  |  Authentication: Anonymous")
 
     async with server:
-        await simulation_loop()
+        try:
+            await simulation_loop()
+        except asyncio.CancelledError:
+            log.info("Simulation loop cancelled — shutting down.")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        log.info("Boiler simulator stopped by user (Ctrl+C).")
