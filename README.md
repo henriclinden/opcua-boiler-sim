@@ -4,6 +4,8 @@ A Python-based OPC UA server that simulates a hot-water boiler system for develo
 
 > ⚠️ **Development use only.** This server has no security or authentication configured and should never be deployed in a production or networked environment.
 
+![Boiler simulator diagram](boiler-diagram.svg)
+
 ---
 
 ## Features
