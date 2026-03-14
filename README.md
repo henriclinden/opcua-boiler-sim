@@ -2,9 +2,9 @@
 
 A Python-based OPC UA server that simulates a hot-water boiler system for development and testing purposes. It exposes a realistic physical model — with actuators, sensors, and alarms — over an unauthenticated, unencrypted OPC UA endpoint.
 
-> ⚠️ **Development use only.** This server has no security or authentication configured and should never be deployed in a production or networked environment.
+NOTE: Development use only. This server has no security or authentication configured and should never be deployed in a production or networked environment.
 
-![Boiler simulator diagram](boiler-diagram.svg)
+![Boiler simulator diagram](docs/boiler-diagram.svg)
 
 ---
 
@@ -163,12 +163,87 @@ SIM_SPEED      = 1.0   # default physics multiplier
 
 ---
 
+## Docker deployment
+
+The simulator ships with a multi-stage `Dockerfile` and a `docker-compose.yml` suitable for deployment on embedded Linux systems (e.g. Raspberry Pi, industrial PCs running Debian/Ubuntu).
+
+### Quick start
+
+```bash
+# Build and start in the background
+docker compose up -d
+
+# Follow logs
+docker compose logs -f
+
+# Stop
+docker compose down
+```
+
+The OPC UA endpoint will be available on the host at `opc.tcp://<device-ip>:4840/boiler/`.
+
+### Building for a different architecture
+
+If you are building on an x86 machine for an ARM-based embedded board (e.g. Raspberry Pi 4), use Docker's built-in cross-compilation:
+
+```bash
+# One-time setup — install the multi-platform builder
+docker buildx create --use
+
+# Build and push (or load) for ARM 64-bit
+docker buildx build --platform linux/arm64 -t boiler-simulator:latest --load .
+
+# Or build for 32-bit ARMv7 (older Pi models)
+docker buildx build --platform linux/arm/v7 -t boiler-simulator:latest --load .
+```
+
+Then transfer the image to the target device:
+
+```bash
+docker save boiler-simulator:latest | ssh user@<device-ip> docker load
+```
+
+### Resource limits
+
+The `docker-compose.yml` sets sensible defaults for a constrained embedded system:
+
+| Parameter | Default | Notes |
+|---|---|---|
+| CPU limit | 50 % of 1 core | Lower to `0.25` on slower boards |
+| Memory limit | 128 MB | Can be reduced to `64M` for minimal boards |
+| Memory reservation | 32 MB | Guaranteed allocation at startup |
+
+Adjust the `deploy.resources` block in `docker-compose.yml` to suit your hardware.
+
+### Auto-start on boot
+
+The `restart: unless-stopped` policy in the Compose file means the simulator will start automatically when the Docker daemon starts. To ensure Docker itself starts on boot:
+
+```bash
+sudo systemctl enable docker
+```
+
+### Health check
+
+Docker monitors the container by attempting a TCP connection to port 4840 every 30 seconds. Check the current health status with:
+
+```bash
+docker inspect --format='{{.State.Health.Status}}' boiler-simulator
+```
+
+---
+
 ## Project Structure
 
 ```
 .
 ├── boiler_opcua_server.py   # OPC UA server + physics simulation
 ├── requirements.txt         # Python dependencies
+├── Dockerfile               # Multi-stage image build
+├── docker-compose.yml       # Compose deployment with health check & resource limits
+├── .dockerignore            # Keeps the image lean
+├── docs/
+│   └── boiler-diagram.svg   # Architecture diagram
 └── README.md
 ```
 

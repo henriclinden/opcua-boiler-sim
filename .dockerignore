@@ -1,0 +1,28 @@
+# Version control
+.git
+.gitignore
+
+# Docker files (not needed inside the image)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Docs & assets
+README.md
+docs/
+*.svg
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS artefacts
+.DS_Store
+Thumbs.db
